@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using GamingForum.Web.Models;
-
-namespace GamingForum.Web.Controllers
+﻿namespace GamingForum.Web.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+    using ViewModels;
+
     public class HomeController : Controller
     {
         public IActionResult Index()

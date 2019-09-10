@@ -1,6 +1,4 @@
-using System;
-
-namespace GamingForum.Web.Models
+namespace GamingForum.Web.ViewModels
 {
     public class ErrorViewModel
     {
