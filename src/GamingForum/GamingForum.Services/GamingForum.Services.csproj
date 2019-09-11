@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GamingForum.Data\GamingForum.Data.csproj" />
+    <ProjectReference Include="..\GamingForum.Infrastructure\GamingForum.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

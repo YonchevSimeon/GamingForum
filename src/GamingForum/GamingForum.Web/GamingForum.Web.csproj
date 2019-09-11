@@ -14,7 +14,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\GamingForum.Data\GamingForum.Data.csproj" />
+    <ProjectReference Include="..\GamingForum.Services\GamingForum.Services.csproj" />
   </ItemGroup>
 
 </Project>

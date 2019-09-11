@@ -1,6 +1,9 @@
 ﻿namespace GamingForum.Web
 {
+    using AutoMapper;
     using Data;
+    using Infrastructure.Extensions;
+    using Infrastructure.Mapping;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -32,11 +35,28 @@
 
             services
                 .AddDbContext<GamingForumDbContext>(options =>
-                    options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+                    options
+                        .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"))
+                        .UseLazyLoadingProxies());
+
             services
-                .AddDefaultIdentity<GamingForumUser>()
+                .AddDefaultIdentity<GamingForumUser>(options =>
+                {
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<GamingForumDbContext>();
+
+            services
+                .AddAutoMapper(cfg =>
+                    cfg.AddProfile<GamingForumProfile>());
+
+            services
+                .AddDomainServices();
 
             services
                 .AddMvc()
