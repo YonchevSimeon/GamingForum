@@ -9,7 +9,6 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -41,16 +40,15 @@
                         .UseLazyLoadingProxies());
 
             services
-                .AddDefaultIdentity<GamingForumUser>(options =>
+                .AddIdentity<GamingForumUser, IdentityRole>(options =>
                 {
-                    options.Password.RequiredLength = 4;
+                    options.Password.RequiredLength = 8;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireDigit = false;
                 })
-                .AddRoles<IdentityRole>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<GamingForumDbContext>();
 
             services
@@ -78,6 +76,7 @@
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseExceptionHandler("/Home/Error");
             }
             else
             {

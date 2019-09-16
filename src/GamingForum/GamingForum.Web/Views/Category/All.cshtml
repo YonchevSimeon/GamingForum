@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<CategoryViewModel>
+
+@{ 
+    ViewData["Title"] = "All Categories";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Creator</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(CategoryViewModel category in Model)
+        {
+            <tr>
+                <th>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Details" asp-route-id="@category.Id">@category.Title</a>
+                    
+                </th>
+                <th>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Profile" asp-route-id="@category.CreatorId">@category.Creator</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

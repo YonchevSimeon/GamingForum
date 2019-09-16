@@ -8,6 +8,7 @@
     using Models;
     using Models.Enums;
     using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     public class AccountService : BaseService, IAccountService
@@ -40,6 +41,9 @@
         {
             await this.signInManager.SignOutAsync();
         }
+
+        public async Task<GamingForumUser> GetLoggedInUserAsync(ClaimsPrincipal claimsPrincipal)
+            => await this.userManager.GetUserAsync(claimsPrincipal);
 
         public bool UserNameExists(string userName)
             => this.context.Users.Any(u => u.UserName == userName);

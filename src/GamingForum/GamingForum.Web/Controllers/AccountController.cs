@@ -27,6 +27,7 @@
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model)
         {
             if(ModelState.IsValid)
@@ -55,6 +56,7 @@
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterInputModel model)
         {
             if(ModelState.IsValid)
@@ -74,7 +76,15 @@
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Profile(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await this.accountService.LogOutAsync();
