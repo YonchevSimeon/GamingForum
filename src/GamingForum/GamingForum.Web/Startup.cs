@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using Data;
+    using GamingForum.Web.Infrastructure;
     using Infrastructure.Extensions;
     using Infrastructure.Mapping;
     using Microsoft.AspNetCore.Builder;
@@ -48,6 +49,7 @@
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireDigit = false;
                 })
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<GamingForumDbContext>();
 
@@ -55,11 +57,18 @@
                 .AddAutoMapper(cfg =>
                     cfg.AddProfile<GamingForumProfile>());
 
+            services.AddAntiforgery();
+
             services
                 .AddDomainServices();
 
             services
-                .AddMvc()
+                .AddRouting(routing =>
+                    routing.LowercaseUrls = true);
+
+            services
+                .AddMvc(options =>
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -79,11 +88,16 @@
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
+
+            app.UseMiddleware(typeof(SeedRolesMiddleware));
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                       name: "areas",
+                       template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

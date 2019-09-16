@@ -2,6 +2,15 @@
 {
     public static class ModelConstants
     {
+        public static class GameForumUser
+        {
+            public const int UsernameMinLength = 4;
+            public const int UsernameMaxLength = 12;
+
+            public const int PasswordMinLength = 8;
+            public const int PasswordMaxLength = 16;
+        }
+
         public static class Category
         {
             public const int CategoryTitleMinLength = 4;

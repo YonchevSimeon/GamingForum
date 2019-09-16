@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingForum.Data", "GamingF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingForum.Models", "GamingForum.Models\GamingForum.Models.csproj", "{0BEBB94B-9780-492E-B131-576219D61DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingForum.Infrastructure", "GamingForum.Infrastructure\GamingForum.Infrastructure.csproj", "{515BCCCD-A7A4-490C-ACC9-72ED0CF64AEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingForum.Infrastructure", "GamingForum.Infrastructure\GamingForum.Infrastructure.csproj", "{515BCCCD-A7A4-490C-ACC9-72ED0CF64AEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamingForum.Services", "GamingForum.Services\GamingForum.Services.csproj", "{C33D3992-ED13-44F4-9D57-70C213201C81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingForum.Services", "GamingForum.Services\GamingForum.Services.csproj", "{C33D3992-ED13-44F4-9D57-70C213201C81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
