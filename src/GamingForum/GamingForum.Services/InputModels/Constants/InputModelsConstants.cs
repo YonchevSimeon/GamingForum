@@ -16,5 +16,19 @@
             public const int TitleMinLength = 4;
             public const int TitleMaxLength = 20;
         }
+
+        public static class Post
+        {
+            public const int TitleMinLength = 4;
+            public const int TitleMaxLength = 20;
+
+            public const int DescriptionMaxLength = 300;
+        }
+
+        public static class Reply
+        {
+            public const int DescriptionMinLength = 1;
+            public const int DescriptionMaxLength = 100;
+        }
     }
 }

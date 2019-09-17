@@ -30,7 +30,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model)
         {
-            if(ModelState.IsValid)
+            if(this.ModelState.IsValid)
             {
                 await this.accountService.LogInAsync(model);
 
@@ -59,7 +59,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterInputModel model)
         {
-            if(ModelState.IsValid)
+            if(this.ModelState.IsValid)
             {
                 await this.accountService.RegisterAsync(model);
 

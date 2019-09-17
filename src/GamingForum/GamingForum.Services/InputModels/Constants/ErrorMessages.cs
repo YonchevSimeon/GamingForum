@@ -18,6 +18,12 @@
         public const string InvalidEmailError = "This is not a valid email address.";
 
         public const string InvalidTitleError = "The {0}, must be between {2} and {1} characters long.";
+
+        public const string InvalidDescriptionError = "The {0} must be no more than {1}";
+
+        public const string InvalidCategoryId = "This category Id is invalid.";
+
+        public const string InvalidPostId = "This post Id is invalid.";
         #endregion
 
         #region messages

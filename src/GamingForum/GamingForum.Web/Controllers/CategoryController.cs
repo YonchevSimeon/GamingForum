@@ -42,7 +42,7 @@
         [HttpPost]
         public async Task<IActionResult> Create(CategoryInputModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 GamingForumUser creator = await this.accountService.GetLoggedInUserAsync(this.User);
 
@@ -65,7 +65,7 @@
         public async Task<IActionResult> Details(string id)
         {
             CategoryDetailsViewModel category = await this.categoryService.ByIdAsync(id);
-
+           
             return this.View(category);
         }
     }

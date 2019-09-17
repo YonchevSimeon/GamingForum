@@ -1,17 +1,19 @@
 ﻿namespace GamingForum.Services.Implementations
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Contracts;
     using Data;
     using InputModels.Category;
-    using ViewModels.Category;
-    using Models;
-    using System.Collections.Generic;
-    using AutoMapper.QueryableExtensions;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
     using Microsoft.EntityFrameworkCore;
+    using Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using ViewModels.Category;
+    using static InputModels.Constants.ErrorMessages;
 
     public class CategoryService : BaseService, ICategoryService
     {
@@ -47,6 +49,18 @@
                 .Where(c => c.Id == id)
                 .ProjectTo<CategoryDetailsViewModel>(this.configurationProvider)
                 .FirstOrDefaultAsync();
+
+        public async Task<Category> GetByIdAsync(string id, ModelStateDictionary modelState)
+        {
+            Category category = await this.context
+                .Categories
+                .Where(c => c.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (category is null) modelState.AddModelError("error", InvalidCategoryId);
+
+            return category;
+        }
 
         public bool TitleExists(string title)
             => this.context.Categories.Any(c => c.Title == title);

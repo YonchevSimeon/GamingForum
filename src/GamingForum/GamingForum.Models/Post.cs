@@ -15,7 +15,7 @@
         [Required]
         [MinLength(PostTitleMinLength)]
         [MaxLength(PostTitleMaxLength)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [MinLength(PostDescriptionMaxLength)]
         public string Description { get; set; }

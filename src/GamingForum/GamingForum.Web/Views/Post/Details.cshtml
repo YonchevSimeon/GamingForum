@@ -1,0 +1,34 @@
+﻿@model PostDetailsViewModel
+
+@{ 
+    ViewData["Title"] = Model.Title;
+}
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>@Model.Title</h2>
+            <h4>Posted on @Model.PostedOn</h4>
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <a class="nav-link btn btn-primary" asp-controller="Account" asp-action="Profile" asp-route-id="@Model.PosterId">Poster - @Model.Poster</a>
+                </div>
+                <div class="col-xs-6">
+                    <a class="nav-link btn btn-success" asp-controller="Reply" asp-action="Make" asp-route-id="@Model.Id">Make Reply</a>
+                </div>
+                <div class="col-xs-6">
+                    <a class="nav-link btn btn-secondary" asp-controller="Category" asp-action="Details" asp-route-id="@Model.CategoryId">Back to category</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <h4>Replies</h4>
+            <div class="center">
+                @foreach (ReplyViewModel reply in Model.Replies)
+                {
+                    <div class="col-xs-6">
+                        <a class="nav-link btn btn-dark text-white" asp-controller="Reply" asp-action="Details" asp-route-id="@reply.Id">@reply.Description</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>

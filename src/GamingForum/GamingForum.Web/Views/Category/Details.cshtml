@@ -4,8 +4,31 @@
     ViewData["Title"] = Model.Title;
 }
 
-<div class="container">
-    <p>Title - @Model.Title</p>
-    <p>Creator - @Model.Creator</p>
-    <p>Created On - @Model.CreatedOn</p>
-</div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>@Model.Title</h2>
+            <h4>Created on @Model.CreatedOn</h4>
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <a class="nav-link btn btn-primary" asp-controller="Account" asp-action="Profile" asp-route-id="@Model.CreatorId">Creator - @Model.Creator</a>
+                </div>
+                <div class="col-xs-6">
+                    <a class="nav-link btn btn-success" asp-controller="Post" asp-action="Create" asp-route-id="@Model.Id">Create Post</a>
+                </div>
+                <div class="col-xs-6">
+                    <a class="nav-link btn btn-secondary" asp-controller="Category" asp-action="All">Back To All</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <h4>Posts</h4>
+            <div class="center">
+                @foreach(PostViewModel post in Model.Posts)
+                {
+                    <div class="col-xs-6">
+                        <a class="nav-link btn btn-dark text-white" asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">@post.Title</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
