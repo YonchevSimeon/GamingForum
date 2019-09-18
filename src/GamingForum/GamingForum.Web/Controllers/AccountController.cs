@@ -3,10 +3,10 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Services.Contracts;
-    using System;
     using System.Net;
     using System.Threading.Tasks;
     using Services.InputModels.Account;
+    using Services.ViewModels.Account;
 
     [Authorize]
     public class AccountController : BaseController
@@ -80,7 +80,9 @@
         [AllowAnonymous]
         public async Task<IActionResult> Profile(string id)
         {
-            throw new NotImplementedException();
+            AccountViewModel account = await this.accountService.GetProfileByIdAsync(id);
+
+            return this.View(account);
         }
 
         [Authorize]

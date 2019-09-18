@@ -4,23 +4,32 @@
     using Contracts;
     using Data;
     using InputModels.Account;
+    using ViewModels.Account;
     using Microsoft.AspNetCore.Identity;
     using Models;
     using Models.Enums;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using AutoMapper.QueryableExtensions;
+    using Microsoft.EntityFrameworkCore;
 
     public class AccountService : BaseService, IAccountService
     {
         private readonly UserManager<GamingForumUser> userManager;
         private readonly SignInManager<GamingForumUser> signInManager;
+        private readonly IConfigurationProvider configurationProvider;
 
-        public AccountService(IMapper mapper, GamingForumDbContext context, UserManager<GamingForumUser> userManager, SignInManager<GamingForumUser> signInManager)
+        public AccountService(IMapper mapper,
+            GamingForumDbContext context,
+            UserManager<GamingForumUser> userManager,
+            SignInManager<GamingForumUser> signInManager,
+            IConfigurationProvider configurationProvider)
             : base(mapper, context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.configurationProvider = configurationProvider;
         }
 
         public async Task LogInAsync(LoginInputModel model)
@@ -44,6 +53,13 @@
 
         public async Task<GamingForumUser> GetLoggedInUserAsync(ClaimsPrincipal claimsPrincipal)
             => await this.userManager.GetUserAsync(claimsPrincipal);
+
+        public async Task<AccountViewModel> GetProfileByIdAsync(string id)
+            => await this.context
+                .Users
+                .Where(u => u.Id == id)
+                .ProjectTo<AccountViewModel>(this.configurationProvider)
+                .FirstOrDefaultAsync();
 
         public bool UserNameExists(string userName)
             => this.context.Users.Any(u => u.UserName == userName);

@@ -2,6 +2,7 @@
 {
     using Models;
     using InputModels.Account;
+    using ViewModels.Account;
     using System.Threading.Tasks;
     using System.Security.Claims;
 
@@ -14,6 +15,8 @@
         Task LogOutAsync();
 
         Task<GamingForumUser> GetLoggedInUserAsync(ClaimsPrincipal claimsPrincipal);
+
+        Task<AccountViewModel> GetProfileByIdAsync(string id);
 
         bool UserNameExists(string userName);
 

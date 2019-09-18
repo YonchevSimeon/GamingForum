@@ -1,0 +1,26 @@
+﻿@model AccountViewModel
+
+@{
+    this.ViewData["Title"] = "Account";
+
+}
+
+<h2 class="text-right">@Model.UserName</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group text-center">
+            <div class="col-sm-6 form-control right">
+                <h4>Activities</h4>
+            </div>
+            <div class="col-sm-6 form-control">
+                <h4>Categories: @Model.Categories</h4>
+            </div>
+            <div class="col-sm-6 form-control">
+                <h4>Posts: @Model.Posts</h4>
+            </div>
+            <div class="col-sm-6 form-control">
+                <h4>Replies: @Model.Replies</h4>
+            </div>
+        </div>
+    </div>
+</div>
