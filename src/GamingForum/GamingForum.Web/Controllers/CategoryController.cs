@@ -10,6 +10,7 @@
     using Services.ViewModels.Category;
     using System.Net;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     [AutorizeRoles(nameof(Role.Administrator), nameof(Role.User))]
     public class CategoryController : BaseController
@@ -26,7 +27,7 @@
         [AllowAnonymous]
         public async Task<IActionResult> All()
         {
-            var categories = await this.categoryService.AllAsync();
+            IEnumerable<CategoryViewModel> categories = await this.categoryService.AllAsync();
 
             return this.View(categories);
         }

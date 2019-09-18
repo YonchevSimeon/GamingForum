@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<PostViewModel>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "All Posts";
 }
 
-<table class="table table-borderless table-hover">
-    <thead class="thead-dark">
+<table class="table table-bordered table-hover">
+    <thead>
         <tr>
-            <th class="text-center">Latest posts</th>
+            <th>@ViewData["Title"]</th>
         </tr>
     </thead>
     <tbody>
@@ -16,14 +16,8 @@
             <tr>
                 <th>
                     <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">@post.Title</a>
-
                 </th>
             </tr>
         }
     </tbody>
 </table>
-
-<div class="form-group">
-    <a class="nav-link text-dark btn btn-info text-white-50" asp-controller="Post" asp-action="All">View all</a>
-</div>
-

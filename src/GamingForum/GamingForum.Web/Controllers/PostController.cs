@@ -9,7 +9,7 @@
     using Models.Enums;
     using System.Threading.Tasks;
     using System.Net;
-    using System;
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Authorization;
 
     [AutorizeRoles(nameof(Role.Administrator), nameof(Role.User))]
@@ -23,6 +23,15 @@
         {
             this.postService = postService;
             this.categoryService = categoryService;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> All()
+        {
+            IEnumerable<PostViewModel> posts = await this.postService.AllAsync();
+
+            return this.View(posts);
         }
 
         [HttpGet]

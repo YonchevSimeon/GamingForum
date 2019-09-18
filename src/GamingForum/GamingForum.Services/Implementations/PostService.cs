@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Mvc.ModelBinding;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using static InputModels.Constants.ErrorMessages;
@@ -23,6 +24,13 @@
         {
             this.configurationProvider = configurationProvider;
         }
+
+        public async Task<IEnumerable<PostViewModel>> AllAsync()
+            => await this.context
+                 .Posts
+                .OrderByDescending(c => c.PostedOn)
+                .ProjectTo<PostViewModel>(this.configurationProvider)
+                .ToListAsync();
 
         public PostInputModel GetPostInputForm(Category category)
         {
@@ -64,6 +72,14 @@
 
             return post;
         }
+
+        public async Task<IEnumerable<PostViewModel>> GetLatestAsync()
+            => await this.context
+                .Posts
+                .OrderByDescending(p => p.PostedOn)
+                .Take(5)
+                .ProjectTo<PostViewModel>(this.configurationProvider)
+                .ToListAsync();
 
         //public async Task<IEnumerable<PostViewModel>> AllByAlbumIdAsync(string id)
         //    => await this.context
