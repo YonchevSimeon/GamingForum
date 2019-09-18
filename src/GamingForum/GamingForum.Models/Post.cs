@@ -9,7 +9,6 @@
         public Post()
         {
             this.Replies = new HashSet<Reply>();
-            this.Likes = new HashSet<UserPostLike>();
         }
 
         [Required]
@@ -29,7 +28,5 @@
         public DateTime PostedOn { get; set; }
 
         public virtual ICollection<Reply> Replies { get; set; }
-
-        public virtual ICollection<UserPostLike> Likes { get; set; }
     }
 }

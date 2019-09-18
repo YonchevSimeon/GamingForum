@@ -7,10 +7,7 @@
 
     public class Reply : BaseModel<string>
     {
-        public Reply()
-        {
-            this.Likes = new HashSet<UserReplyLike>();
-        }
+        public Reply() { }
 
         public string ReplierId { get; set; }
         public virtual GamingForumUser Replier { get; set; }
@@ -24,7 +21,5 @@
         public string Description { get; set; }
 
         public DateTime RepliedOn { get; set; }
-
-        public virtual ICollection<UserReplyLike> Likes { get; set; }
     }
 }

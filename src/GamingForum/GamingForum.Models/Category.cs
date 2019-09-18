@@ -9,7 +9,6 @@
         public Category()
         {
             this.Posts = new HashSet<Post>();
-            this.Likes = new HashSet<UserCategoryLike>();
         }
 
         [Required]
@@ -23,7 +22,5 @@
         public DateTime CreatedOn { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
-
-        public virtual ICollection<UserCategoryLike> Likes { get; set; }
     }
 }
